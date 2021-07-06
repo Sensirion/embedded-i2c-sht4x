@@ -43,6 +43,14 @@
 
 #define SHT4X_I2C_ADDRESS 0x44
 
+static int32_t convert_ticks_to_celsius(uint16_t ticks) {
+    return ((21875 * (int32_t)ticks) >> 13) - 45000;
+}
+
+static int32_t convert_ticks_to_percent_rh(uint16_t ticks) {
+    return ((15625 * (int32_t)ticks) >> 13) - 6000;
+}
+
 int16_t sht4x_measure_high_precision_ticks(uint16_t* temperature_ticks,
                                            uint16_t* humidity_ticks) {
     int16_t error;
@@ -63,6 +71,21 @@ int16_t sht4x_measure_high_precision_ticks(uint16_t* temperature_ticks,
     }
     *temperature_ticks = sensirion_common_bytes_to_uint16_t(&buffer[0]);
     *humidity_ticks = sensirion_common_bytes_to_uint16_t(&buffer[2]);
+    return NO_ERROR;
+}
+
+int16_t sht4x_measure_high_precision(int32_t* temperature, int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error =
+        sht4x_measure_high_precision_ticks(&temperature_ticks, &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
     return NO_ERROR;
 }
 
@@ -89,6 +112,22 @@ int16_t sht4x_measure_medium_precision_ticks(uint16_t* temperature_ticks,
     return NO_ERROR;
 }
 
+int16_t sht4x_measure_medium_precision(int32_t* temperature,
+                                       int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_measure_medium_precision_ticks(&temperature_ticks,
+                                                 &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return NO_ERROR;
+}
+
 int16_t sht4x_measure_lowest_precision_ticks(uint16_t* temperature_ticks,
                                              uint16_t* humidity_ticks) {
     int16_t error;
@@ -109,6 +148,22 @@ int16_t sht4x_measure_lowest_precision_ticks(uint16_t* temperature_ticks,
     }
     *temperature_ticks = sensirion_common_bytes_to_uint16_t(&buffer[0]);
     *humidity_ticks = sensirion_common_bytes_to_uint16_t(&buffer[2]);
+    return NO_ERROR;
+}
+
+int16_t sht4x_measure_lowest_precision(int32_t* temperature,
+                                       int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_measure_lowest_precision_ticks(&temperature_ticks,
+                                                 &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
     return NO_ERROR;
 }
 
@@ -136,6 +191,22 @@ sht4x_activate_highest_heater_power_long_ticks(uint16_t* temperature_ticks,
     return NO_ERROR;
 }
 
+int16_t sht4x_activate_highest_heater_power_long(int32_t* temperature,
+                                                 int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_activate_highest_heater_power_long_ticks(&temperature_ticks,
+                                                           &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return NO_ERROR;
+}
+
 int16_t
 sht4x_activate_highest_heater_power_short_ticks(uint16_t* temperature_ticks,
                                                 uint16_t* humidity_ticks) {
@@ -157,6 +228,22 @@ sht4x_activate_highest_heater_power_short_ticks(uint16_t* temperature_ticks,
     }
     *temperature_ticks = sensirion_common_bytes_to_uint16_t(&buffer[0]);
     *humidity_ticks = sensirion_common_bytes_to_uint16_t(&buffer[2]);
+    return NO_ERROR;
+}
+
+int16_t sht4x_activate_highest_heater_power_short(int32_t* temperature,
+                                                  int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_activate_highest_heater_power_short_ticks(&temperature_ticks,
+                                                            &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
     return NO_ERROR;
 }
 
@@ -184,6 +271,22 @@ sht4x_activate_medium_heater_power_long_ticks(uint16_t* temperature_ticks,
     return NO_ERROR;
 }
 
+int16_t sht4x_activate_medium_heater_power_long(int32_t* temperature,
+                                                int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_activate_medium_heater_power_long_ticks(&temperature_ticks,
+                                                          &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return NO_ERROR;
+}
+
 int16_t
 sht4x_activate_medium_heater_power_short_ticks(uint16_t* temperature_ticks,
                                                uint16_t* humidity_ticks) {
@@ -205,6 +308,22 @@ sht4x_activate_medium_heater_power_short_ticks(uint16_t* temperature_ticks,
     }
     *temperature_ticks = sensirion_common_bytes_to_uint16_t(&buffer[0]);
     *humidity_ticks = sensirion_common_bytes_to_uint16_t(&buffer[2]);
+    return NO_ERROR;
+}
+
+int16_t sht4x_activate_medium_heater_power_short(int32_t* temperature,
+                                                 int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_activate_medium_heater_power_short_ticks(&temperature_ticks,
+                                                           &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
     return NO_ERROR;
 }
 
@@ -232,6 +351,22 @@ sht4x_activate_lowest_heater_power_long_ticks(uint16_t* temperature_ticks,
     return NO_ERROR;
 }
 
+int16_t sht4x_activate_lowest_heater_power_long(int32_t* temperature,
+                                                int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_activate_lowest_heater_power_long_ticks(&temperature_ticks,
+                                                          &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return NO_ERROR;
+}
+
 int16_t
 sht4x_activate_lowest_heater_power_short_ticks(uint16_t* temperature_ticks,
                                                uint16_t* humidity_ticks) {
@@ -253,6 +388,22 @@ sht4x_activate_lowest_heater_power_short_ticks(uint16_t* temperature_ticks,
     }
     *temperature_ticks = sensirion_common_bytes_to_uint16_t(&buffer[0]);
     *humidity_ticks = sensirion_common_bytes_to_uint16_t(&buffer[2]);
+    return NO_ERROR;
+}
+
+int16_t sht4x_activate_lowest_heater_power_short(int32_t* temperature,
+                                                 int32_t* humidity) {
+    int16_t error;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    error = sht4x_activate_lowest_heater_power_short_ticks(&temperature_ticks,
+                                                           &humidity_ticks);
+    if (error) {
+        return error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
     return NO_ERROR;
 }
 
