@@ -48,7 +48,7 @@ int16_t sht4x_measure_high_precision_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0xFD);
+    buffer[offset++] = (uint8_t)0xFD;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -71,7 +71,7 @@ int16_t sht4x_measure_medium_precision_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0xF6);
+    buffer[offset++] = (uint8_t)0xF6;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -94,7 +94,7 @@ int16_t sht4x_measure_lowest_precision_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0xE0);
+    buffer[offset++] = (uint8_t)0xE0;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -118,7 +118,7 @@ sht4x_activate_highest_heater_power_long_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x39);
+    buffer[offset++] = (uint8_t)0x39;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -142,7 +142,7 @@ sht4x_activate_highest_heater_power_short_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x32);
+    buffer[offset++] = (uint8_t)0x32;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -166,7 +166,7 @@ sht4x_activate_medium_heater_power_long_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x2F);
+    buffer[offset++] = (uint8_t)0x2F;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -190,7 +190,7 @@ sht4x_activate_medium_heater_power_short_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x24);
+    buffer[offset++] = (uint8_t)0x24;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -214,7 +214,7 @@ sht4x_activate_lowest_heater_power_long_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x1E);
+    buffer[offset++] = (uint8_t)0x1E;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -238,7 +238,7 @@ sht4x_activate_lowest_heater_power_short_ticks(uint16_t* temperature_ticks,
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x15);
+    buffer[offset++] = (uint8_t)0x15;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -260,7 +260,7 @@ int16_t sht4x_serial_number(uint32_t* serial_number) {
     int16_t error;
     uint8_t buffer[6];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x89);
+    buffer[offset++] = (uint8_t)0x89;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
@@ -281,7 +281,7 @@ int16_t sht4x_soft_reset(void) {
     int16_t error;
     uint8_t buffer[2];
     uint16_t offset = 0;
-    offset = sensirion_i2c_add_command_to_buffer(&buffer[0], offset, 0x94);
+    buffer[offset++] = (uint8_t)0x94;
 
     error = sensirion_i2c_write_data(SHT4X_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
