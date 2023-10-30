@@ -37,8 +37,9 @@ Use the following pins to connect your SHT4X:
 | 4 | red | VDD | Supply Voltage | 1.1V to 3.6V
 
 
-
 The recommended voltage is 3.3V.
+
+Please refer to the datasheet for proper circuit setup. There are also 3rd party boards for easy connection of your SHT4x to your embedded target.
 
 ### Configure the code
 
