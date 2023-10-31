@@ -74,6 +74,126 @@ typedef enum {
 void sht4x_init(uint8_t i2c_address);
 
 /**
+ * sht4x_measure_high_precision() - SHT4x command for a single shot
+ * measurement with high repeatability.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_measure_high_precision(int32_t* temperature, int32_t* humidity);
+
+/**
+ * sht4x_measure_medium_precision() - SHT4x command for a single shot
+ * measurement with medium repeatability.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_measure_medium_precision(int32_t* temperature, int32_t* humidity);
+
+/**
+ * sht4x_measure_lowest_precision() - SHT4x command for a single shot
+ * measurement with lowest repeatability.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_measure_lowest_precision(int32_t* temperature, int32_t* humidity);
+
+/**
+ * sht4x_activate_highest_heater_power_long() - SHT4x command to activate
+ * highest heater power and perform a single shot high precision measurement for
+ * 1s.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_activate_highest_heater_power_long(int32_t* temperature,
+                                                 int32_t* humidity);
+
+/**
+ * sht4x_activate_highest_heater_power_short() - SHT4x command to activate
+ * highest heater power and perform a single shot high precision measurement for
+ * 0.1s.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_activate_highest_heater_power_short(int32_t* temperature,
+                                                  int32_t* humidity);
+
+/**
+ * sht4x_activate_medium_heater_power_long() - SHT4x command to activate
+ * medium heater power and perform a single shot high precision measurement for
+ * 1s.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_activate_medium_heater_power_long(int32_t* temperature,
+                                                int32_t* humidity);
+
+/**
+ * sht4x_activate_medium_heater_power_short() - SHT4x command to activate
+ * medium heater power and perform a single shot high precision measurement for
+ * 0.1s.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_activate_medium_heater_power_short(int32_t* temperature,
+                                                 int32_t* humidity);
+
+/**
+ * sht4x_activate_lowest_heater_power_long() - SHT4x command to activate
+ * lowest heater power and perform a single shot high precision measurement for
+ * 1s.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_activate_lowest_heater_power_long(int32_t* temperature,
+                                                int32_t* humidity);
+
+/**
+ * sht4x_activate_lowest_heater_power_short() - SHT4x command to activate
+ * lowest heater power and perform a single shot high precision measurement for
+ * 0.1s.
+ *
+ * @param temperature Temperature in milli degrees centigrade.
+ *
+ * @param humidity Humidity in milli percent relative humidity.
+ *
+ * @return 0 on success, an error code otherwise
+ */
+int16_t sht4x_activate_lowest_heater_power_short(int32_t* temperature,
+                                                 int32_t* humidity);
+
+/**
  * @brief sht4x_measure_high_precision_ticks
  *
  * SHT4x command for a single shot measurement with high repeatability.
