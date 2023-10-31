@@ -1,4 +1,3 @@
 /sht4x_i2c_example_usage
-/tests/sht4x-test-hw_i2c
-/tests/sht4x-test-sw_i2c
-/.idea
+/tests/sht4x_test_hw_i2c
+/tests/sht4x_test_sw_i2c
