@@ -81,7 +81,6 @@ test:
   stage: test
   image: registry.gitlab.sensirion.lokal/sensirion/docker/docker-rpi-testbed:1.3.0
   tags: [mso-sw-testbed-2]
-  when: manual
   script:
     - git clone -b 3.0.0 https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.sensirion.lokal/MSO-SW/drivers/testbed/i2c-mux-testbed.git
     - cd tests/
