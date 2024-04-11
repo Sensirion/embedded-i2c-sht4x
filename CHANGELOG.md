@@ -1,23 +1,30 @@
-# Changelog
-All notable changes to this project will be documented in this file.
+# CHANGELOG
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] 
 
-## [Unreleased]
+## [1.1.0] - 2024-4-10
 
-- [Changed] The I2C address must now be configured with sht4x_init() before communicating with the sensor.
-- [Changed] More specific defines for the I2C Addresses of different SHT4x sensors in the sht4x_i2c header.
-- [Changed] Type of parameter count in sensirion_i2c_hal_read and sensirion_i2c_hal_write in sensirion_i2c_hal from uint16_t to uint8_t
-- [Changed] Updated README
-- [Changed] Moved example to subfolder
+### Fixed
 
+- Fix colliding definitions with other Sensirion sensor drivers
+## [1.0.0] - 2024-3-14
 
+### Changed
 
-## [0.1.0] - 2021-07-27
+- Defined I2C addresses for different sensor models. You must now pass the I2C address to use in the begin() method of SensirionI2cSht4x
+- Improved README
+## [0.1.0] - 2021-7-27
 
-Initial Release
+### Added
 
+- Add product picture
+- Add interfaces to start, stop and read measurements.
+- Add interfaces to read product name, serial number and version
+
+[Unreleased]: https://github.com/Sensirion/embedded-i2c-sht4x/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/Sensirion/embedded-i2c-sht4x/compare/1.0.0...1.1.0
+[1.0.0]: https://github.com/Sensirion/embedded-i2c-sht4x/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/Sensirion/embedded-i2c-sht4x/releases/tag/0.1.0
-
