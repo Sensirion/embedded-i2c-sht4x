@@ -47,8 +47,175 @@ static uint8_t communication_buffer[6] = {0};
 
 static uint8_t _i2c_address;
 
+/**
+ * convert_ticks_to_celsius() - convert temperature ticks
+ * to physical temperature (approximation)
+ *
+ * @param ticks temperature in ticks
+ *
+ * @return Temperature in milli centigrade.
+ */
+static int32_t convert_ticks_to_celsius(uint16_t ticks) {
+    return ((21875 * (int32_t)ticks) >> 13) - 45000;
+}
+
+/**
+ * convert_ticks_to_percent_rh() - convert humidity ticks
+ * to physical humidity (approximation)
+ *
+ * @param ticks relative humidity in ticks
+ *
+ * @return Humidity in milli percent relative humidity.
+ */
+static int32_t convert_ticks_to_percent_rh(uint16_t ticks) {
+    return ((15625 * (int32_t)ticks) >> 13) - 6000;
+}
+
 void sht4x_init(uint8_t i2c_address) {
     _i2c_address = i2c_address;
+}
+
+int16_t sht4x_measure_high_precision(int32_t* temperature, int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error =
+        sht4x_measure_high_precision_ticks(&temperature_ticks, &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_measure_medium_precision(int32_t* temperature,
+                                       int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_measure_medium_precision_ticks(&temperature_ticks,
+                                                       &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_measure_lowest_precision(int32_t* temperature,
+                                       int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_measure_lowest_precision_ticks(&temperature_ticks,
+                                                       &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_activate_highest_heater_power_long(int32_t* temperature,
+                                                 int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_activate_highest_heater_power_long_ticks(
+        &temperature_ticks, &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_activate_highest_heater_power_short(int32_t* temperature,
+                                                  int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_activate_highest_heater_power_short_ticks(
+        &temperature_ticks, &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_activate_medium_heater_power_long(int32_t* temperature,
+                                                int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_activate_medium_heater_power_long_ticks(
+        &temperature_ticks, &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_activate_medium_heater_power_short(int32_t* temperature,
+                                                 int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_activate_medium_heater_power_short_ticks(
+        &temperature_ticks, &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_activate_lowest_heater_power_long(int32_t* temperature,
+                                                int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_activate_lowest_heater_power_long_ticks(
+        &temperature_ticks, &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
+}
+
+int16_t sht4x_activate_lowest_heater_power_short(int32_t* temperature,
+                                                 int32_t* humidity) {
+    int16_t local_error = NO_ERROR;
+    uint16_t temperature_ticks;
+    uint16_t humidity_ticks;
+
+    local_error = sht4x_activate_lowest_heater_power_short_ticks(
+        &temperature_ticks, &humidity_ticks);
+    if (local_error != NO_ERROR) {
+        return local_error;
+    }
+    *temperature = convert_ticks_to_celsius(temperature_ticks);
+    *humidity = convert_ticks_to_percent_rh(humidity_ticks);
+    return local_error;
 }
 
 int16_t sht4x_measure_high_precision_ticks(uint16_t* temperature_ticks,

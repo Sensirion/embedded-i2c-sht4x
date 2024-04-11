@@ -1,8 +1,7 @@
 generator_version: 0.40.0
 model_version: 2.1.1
 dg_status:
-- ''
-- RELEASED
-is_manually_modified: false
+- released
+is_manually_modified: true
 first_generated: '2021-07-06 11:23'
 last_generated: '2024-04-11 14:11'

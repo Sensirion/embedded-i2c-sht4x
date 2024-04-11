@@ -57,20 +57,20 @@ int main(void) {
         return error;
     }
     printf("serial_number: %u\n", serial_number);
-    uint16_t temperature_ticks = 0;
-    uint16_t humidity_ticks = 0;
+    int32_t temperature_milli_degC = 0;
+    int32_t humidity_milli_RH = 0;
     uint16_t repetition = 0;
     for (repetition = 0; repetition < 500; repetition++) {
         sensirion_hal_sleep_us(20000);
-        error = sht4x_measure_lowest_precision_ticks(&temperature_ticks,
-                                                     &humidity_ticks);
+        error = sht4x_measure_lowest_precision(&temperature_milli_degC,
+                                               &humidity_milli_RH);
         if (error != NO_ERROR) {
             printf("error executing measure_lowest_precision_ticks(): %i\n",
                    error);
             continue;
         }
-        printf("temperature_ticks: %u ", temperature_ticks);
-        printf("humidity_ticks: %u\n", humidity_ticks);
+        printf("Temperature milli °C: %i ", temperature_milli_degC);
+        printf("Humidity milli percent RH: %i\n", humidity_milli_RH);
     }
 
     return NO_ERROR;

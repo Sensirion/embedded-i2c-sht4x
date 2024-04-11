@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 include(${PICO_SDK_PATH}/pico_sdk_init.cmake)
 
-project(SCD4XSensor C CXX ASM)
+project(SHT4XSensor C CXX ASM)
 pico_sdk_init()
 
 set(CMAKE_C_STANDARD 11)
@@ -10,7 +10,7 @@ add_executable(main
         main.c
         sensirion_i2c.c
         sensirion_i2c.hal.c
-        scd4x_i2c.c
+        sht4x_i2c.c
         sensirion_common.c)
 
 # pull in common dependencies and additional i2c hardware support
