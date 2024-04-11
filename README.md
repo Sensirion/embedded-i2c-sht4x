@@ -31,15 +31,14 @@ Use the following pins to connect your SHT4X:
 
 | *Pin* | *Cable Color* | *Name* | *Description*  | *Comments* |
 |-------|---------------|:------:|----------------|------------|
-| 1 | green | SDA | I2C: Serial data input / output | 
-| 2 | black | GND | Ground | 
-| 3 | yellow | SCL | I2C: Serial clock input | 
+| 1 | green | SDA | I2C: Serial data input / output |
+| 2 | black | GND | Ground |
+| 3 | yellow | SCL | I2C: Serial clock input |
 | 4 | red | VDD | Supply Voltage | 1.1V to 3.6V
 
 
-The recommended voltage is 3.3V.
 
-Please refer to the datasheet for proper circuit setup. There are also 3rd party boards for easy connection of your SHT4x to your embedded target.
+The recommended voltage is 3.3V.
 
 ### Configure the code
 
@@ -88,7 +87,7 @@ detailed template where you just need to fill in your system specific values.
 
 The provided example is working with a SHT40, I²C address 0x44.
 In order to use the code with another product or I²C address you need to change it in the call sht4x_init(ADDRESS) in
-`sht4x_i2c_example_usage.c`. The list of supported I²C-addresses is found in the header 
+`sht4x_i2c_example_usage.c`. The list of supported I²C-addresses is found in the header
 `sht4x_i2c.h`.
 
 
